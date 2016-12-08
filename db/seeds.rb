@@ -6,4 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-names = ["justin", "james", "tim", "Fred", "Lance", "Tom", "Gretchen", "Heldric"]
+spill = Spill.new(IncidentURL: "EIR5280", DateReported: "12/3/2016", DateReported: "12/3/2016", County: "Dunn", Latitude: 47.44454, Longitude: -102.79767, Contaminant: "Diesel", Volume: 10, Units: "gallons", Contained: "Yes", user_id: 1)
+
+
