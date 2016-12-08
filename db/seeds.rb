@@ -7,4 +7,3 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 names = ["justin", "james", "tim", "Fred", "Lance", "Tom", "Gretchen", "Heldric"]
-

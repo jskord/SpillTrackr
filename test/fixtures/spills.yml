@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  IncidentURL: MyString
+  DateReported: 
+  DateIncident: 
+  County: MyString
+  Latitude: 1.5
+  Longitude: 1.5
+  Contaminant: MyString
+  Volume: 1
+  Units: MyString
+  Contained: MyString
+  user_id: 1
+
+two:
+  IncidentURL: MyString
+  DateReported: 
+  DateIncident: 
+  County: MyString
+  Latitude: 1.5
+  Longitude: 1.5
+  Contaminant: MyString
+  Volume: 1
+  Units: MyString
+  Contained: MyString
+  user_id: 1
