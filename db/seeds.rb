@@ -8,4 +8,3 @@
 
 names = ["justin", "james", "tim", "Fred", "Lance", "Tom", "Gretchen", "Heldric"]
 
-names
