@@ -1,0 +1,16 @@
+IncidentURL,DateReported,DateIncident,County,Latitude,Longitude,Contaminant,Volume,Units,Contained,user_id
+EIR5284,12/8/2016,12/7/2016,McKenzie,48.02431,-102.7251,Methanol,50,barrels,Yes,1
+EIR5283,12/7/2016,12/7/2016,Williams,48.18813,-103.64792,petroleum (gasoline or diesel),,,No,1
+EIR5282,12/5/2016,12/5/2016,Billings,47.1056,-103.3694,crude oil-quantity of release is undetermined.,,,Yes,1
+EIR5281,12/5/2016,12/3/2016,Williams,48.2862,-103.0864,Crude oil,0,barrels,Yes,1
+EIR5280,12/3/2016,12/3/2016,Dunn,47.44454,-102.79767,Diesel,10,gallons,Yes,1
+EIR5279,12/3/2016,12/2/2016,Dunn,47.4446,-102.81757,Production water,105,barrels,Yes,1
+EIR5278,12/1/2016,12/1/2016,Mountrail,47.93406,-102.17171,crude oil,20,barrels,Yes,1
+EIR5277,11/27/2016,11/26/2016,Dunn,47.5172,-102.85065,Mineral oil,,,Yes,1
+EIR5276,11/25/2016,11/24/2016,Williams,48.28468,-102.92234,Crude oil,15,gallons,Yes,1
+EIR5275,11/22/2016,11/22/2016,McKenzie,47.84981,-103.18266,Vehicle Coolant,2,gallons,Yes,1
+EIR5274,11/18/2016,11/18/2016,Traill,47.40867,-97.06194,Diesel Fuel,20,gallons,Yes,1
+EIR5272,11/16/2016,11/15/2016,McHenry,48.24261,-100.84521,fuel,,,Yes,1
+EIR5273,11/16/2016,11/15/2016,Williams,48.17556,-103.47247,Crude Oil,1,barrels,Yes,1
+EIR5269,11/14/2016,11/13/2016,Burke,48.80729,-102.13167,Diesel Fuel,40,gallons,Yes,1
+EIR5267,11/13/2016,11/13/2016,Williams,48.14109,-103.67901,Gasoline,10,gallons,Yes,1

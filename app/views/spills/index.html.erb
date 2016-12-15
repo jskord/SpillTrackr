@@ -1,0 +1,6 @@
+<h1>All Spills!!</h1>
+<% @spills.each do |spill| %>
+  <h2>Date of incident: <%= spill.DateIncident %> </h2>
+  <p>Contaminant: <%= spill.Contaminant %> </p> 
+  <p>Volume: <%= spill.Volume.to_s + " " + spill.Units.to_s %> </p>
+<% end %>
