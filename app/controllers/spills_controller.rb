@@ -1,6 +1,6 @@
 class SpillsController < ApplicationController
-  def index
+  def recent_spills
     @spills = Spill.all
-    render 'index.html.erb'
+    render 'recent_spills.html.erb'
   end
 end
