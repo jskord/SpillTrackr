@@ -5,32 +5,64 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'nokogiri'
+require 'open-uri'
 
-require 'csv'
+url = 'http://www.ndhealth.gov/ehs/foia/spills/'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'Spill_Seed_File.csv'))
+page = Nokogiri::HTML(open(url))    
 
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+data = page.xpath('//tr//td')
 
+s = Spill.new
+s.IncidentURL = data[0].content
+raw_date_reported = data[1].content.split('/')
+s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
+raw_date_incident = data[2].content.split('/')
+s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
+s.County = data[3].content
+s.Latitude = data[5].content
+s.Longitude = data[6].content
+s.Contaminant = data[7].content
+s.Volume = data[8].content
+s.Units = data[9].content
+s.Contained = data[10].content
+s.user_id = 1
+s.save
 
+s = Spill.new
+s.IncidentURL = data[11].content.split('/')
+raw_date_reported = data[12].content.split('/')
+s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
+raw_date_incident = data[13].content.split('/')
+s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
+s.County = data[14].content
+s.Latitude = data[16].content
+s.Longitude = data[17].content
+s.Contaminant = data[18].content
+s.Volume = data[19].content
+s.Units = data[20].content
+s.Contained = data[21].content
+s.user_id = 1
+s.save
 
-csv.each do |row|
-  s = Spill.new
-  s.IncidentURL = row['IncidentURL']
-  raw_date_reported = row['DateReported'].split('/')
-  s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
-  raw_date_incident = row['DateIncident'].split('/')
-  s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
-  s.County = row['County']
-  s.Latitude = row['Latitude']
-  s.Longitude = row['Longitude']
-  s.Contaminant = row['Contaminant']
-  s.Volume = row['Volume']
-  s.Units = row['Units']
-  s.Contained = row['Contained']
-  s.user_id = row['user_id']
-  s.save
-end
+s = Spill.new
+s.IncidentURL = data[22].content
+raw_date_reported = data[23].content.split('/')
+s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
+raw_date_incident = data[24].content.split('/')
+s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
+s.County = data[25].content
+s.Latitude = data[27].content
+s.Longitude = data[28].content
+s.Contaminant = data[29].content
+s.Volume = data[30].content
+s.Units = data[31].content
+s.Contained = data[32].content
+s.user_id = 1
+s.save
+
+p Spill.last
 
 # CSV.foreach('/Spill_Seed_File.csv') do |row|
 #   url = row[0]
