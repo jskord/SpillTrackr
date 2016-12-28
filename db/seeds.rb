@@ -15,7 +15,7 @@ page = Nokogiri::HTML(open(url))
 data = page.xpath('//tr//td')
 
 s = Spill.new
-s.IncidentURL = data[0].content
+s.IncidentURL = data[0].content.strip
 raw_date_reported = data[1].content.split('/')
 s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
 raw_date_incident = data[2].content.split('/')
@@ -31,7 +31,7 @@ s.user_id = 1
 s.save
 
 s = Spill.new
-s.IncidentURL = data[11].content.split('/')
+s.IncidentURL = data[11].content.strip
 raw_date_reported = data[12].content.split('/')
 s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
 raw_date_incident = data[13].content.split('/')
@@ -47,7 +47,7 @@ s.user_id = 1
 s.save
 
 s = Spill.new
-s.IncidentURL = data[22].content
+s.IncidentURL = data[22].content.strip
 raw_date_reported = data[23].content.split('/')
 s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
 raw_date_incident = data[24].content.split('/')
@@ -62,7 +62,7 @@ s.Contained = data[32].content
 s.user_id = 1
 s.save
 
-p Spill.last
+p Spill.all
 
 # CSV.foreach('/Spill_Seed_File.csv') do |row|
 #   url = row[0]
