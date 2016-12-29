@@ -5,64 +5,63 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
+require 'selenium-webdriver'
+
+def get_data(browser)
+  doc = Nokogiri::HTML(browser.page_source)
+  keys = doc.css("table#GridView1 th").map { |item| item.text }
+  data = []
+  doc.css("table#GridView1 tr").each do |row|
+    row_data = {}
+    row.css("td").each_with_index do |item, index|
+      row_data[keys[index]] = item.text.strip
+    end
+    if row_data != {}
+      s = Spill.new
+      s.IncidentURL = row_data["Incident ID"]
+      raw_date_reported = row_data["Date Reported"].split('/')
+      s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
+      raw_date_incident = row_data["Date Incident6"].split('/')
+      s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
+      s.County = row_data["County"]
+      s.Latitude = row_data["Latitude"]
+      s.Longitude = row_data["Longitude"]
+      s.Contaminant = row_data["Contaminant"]
+      s.Volume = row_data["Volume"]
+      s.Units = row_data["Units"]
+      s.Contained = row_data["Contained"]
+      s.user_id = 1
+      s.save
+    end
+  end
+  data
+end
 
 url = 'http://www.ndhealth.gov/ehs/foia/spills/'
 
-page = Nokogiri::HTML(open(url))    
+puts "Creating phantom browswer..."
+browser = Selenium::WebDriver.for :phantomjs
+puts "Opening url..."
+browser.get url
 
-data = page.xpath('//tr//td')
+puts "Reading data page 1"
+data = get_data(browser)
+19.times do |index|
+  puts "Reading data page #{index + 2}"
+  browser.find_element(css: 'input[value="Next"]').click
+  data += get_data(browser)
+end
 
-s = Spill.new
-s.IncidentURL = data[0].content.strip
-raw_date_reported = data[1].content.split('/')
-s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
-raw_date_incident = data[2].content.split('/')
-s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
-s.County = data[3].content
-s.Latitude = data[5].content
-s.Longitude = data[6].content
-s.Contaminant = data[7].content
-s.Volume = data[8].content
-s.Units = data[9].content
-s.Contained = data[10].content
-s.user_id = 1
-s.save
+browser.close
 
-s = Spill.new
-s.IncidentURL = data[11].content.strip
-raw_date_reported = data[12].content.split('/')
-s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
-raw_date_incident = data[13].content.split('/')
-s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
-s.County = data[14].content
-s.Latitude = data[16].content
-s.Longitude = data[17].content
-s.Contaminant = data[18].content
-s.Volume = data[19].content
-s.Units = data[20].content
-s.Contained = data[21].content
-s.user_id = 1
-s.save
+puts "finished!"
 
-s = Spill.new
-s.IncidentURL = data[22].content.strip
-raw_date_reported = data[23].content.split('/')
-s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
-raw_date_incident = data[24].content.split('/')
-s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
-s.County = data[25].content
-s.Latitude = data[27].content
-s.Longitude = data[28].content
-s.Contaminant = data[29].content
-s.Volume = data[30].content
-s.Units = data[31].content
-s.Contained = data[32].content
-s.user_id = 1
-s.save
 
-p Spill.all
+
+
 
 # CSV.foreach('/Spill_Seed_File.csv') do |row|
 #   url = row[0]
