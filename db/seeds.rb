@@ -40,7 +40,7 @@ def get_data(browser)
   data
 end
 
-url = 'http://www.ndhealth.gov/ehs/foia/spills/'
+url = 'http://www.ndhealth.gov/ehs/foia/spills/defaultArc.aspx'
 
 puts "Creating phantom browswer..."
 browser = Selenium::WebDriver.for :phantomjs
@@ -49,7 +49,7 @@ browser.get url
 
 puts "Reading data page 1"
 data = get_data(browser)
-19.times do |index|
+188.times do |index|
   puts "Reading data page #{index + 2}"
   browser.find_element(css: 'input[value="Next"]').click
   data += get_data(browser)
