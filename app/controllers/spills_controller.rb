@@ -1,6 +1,18 @@
 class SpillsController < ApplicationController
-  def recent_spills
+  def index
     @spills = Spill.all
-    render 'recent_spills.html.erb'
+    render 'index.html.erb'
   end
+
+  def show
+    if params[:id] == "random"
+      spill = Spill.all
+      @spill = spill.sample
+    else
+      spill_id = params[:id]
+      @spill = Spill.find_by(id: spill_id)
+    end
+    render 'show.json.jbuilder'
+  end
+
 end

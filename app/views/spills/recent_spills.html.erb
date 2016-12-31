@@ -1,8 +1,0 @@
-<h1>Recent Spills!!</h1>
-<% @spills.each do |spill| %>
-  <h2>Date of incident: <%= spill.DateIncident %> </h2>
-  <p>Contaminant: <%= spill.Contaminant %> </p> 
-  <p>Volume: <%= spill.Volume.to_s + " " + spill.Units.to_s %> </p>
-  <p>Latitude: <%= spill.Latitude.to_s %>
-  <p>Longitude: <%= spill.Longitude.to_s %>
-<% end %>
