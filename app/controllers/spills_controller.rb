@@ -1,7 +1,7 @@
 class SpillsController < ApplicationController
   def index
     @spills = Spill.all
-    render 'index.html.erb'
+    render 'index.json.jbuilder'
   end
 
   def show
