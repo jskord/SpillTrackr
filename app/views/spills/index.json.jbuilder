@@ -1,6 +1,6 @@
 json.array! @spills.each do |spill|
   json.id spill.id
-  json.Latitude spill.Latitude
+  json.Latitude spill.Latitude 
   json.Longitude spill.Longitude
   json.DateIncident spill.DateIncident
   json.County spill.County

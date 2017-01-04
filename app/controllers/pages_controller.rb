@@ -11,4 +11,5 @@ class PagesController < ApplicationController
   def graphs
     render 'graphs.html.erb'
   end
+  
 end

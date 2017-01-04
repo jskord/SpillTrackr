@@ -1,5 +1,10 @@
-json.id @spill.id
-json.DateIncident @spill.DateIncident
-json.Contaminant @spill.Contaminant
-json.volume @spill.Volume
-json.unit @spill.Units
+json.id spill.id
+json.Latitude spill.Latitude
+json.Longitude spill.Longitude
+json.DateIncident spill.DateIncident
+json.County spill.County
+json.Contaminant spill.Contaminant
+json.volume spill.Volume
+json.unit spill.Units
+json.Contained spill.Contained
+json.IncidentURL spill.IncidentURL

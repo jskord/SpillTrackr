@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/' => 'pages#home'
   get '/map' => 'pages#map'
   get '/graphs' => 'pages#graphs'
+  get '/test' => 'pages#test'
 
   get '/index' => 'spills#index'
   get '/spill/:id' => 'spills#show'
