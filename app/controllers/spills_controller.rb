@@ -12,6 +12,8 @@ class SpillsController < ApplicationController
           .or(Spill.where(County: "Dunn")
             .or(Spill.where(County: "Billings")
               .or(Spill.where(County: "Golden Valley")
+                .or(Spill.where(County: "Mountrail")
+                  )
                 )
               )
             )
