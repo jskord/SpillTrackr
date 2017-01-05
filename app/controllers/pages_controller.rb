@@ -4,12 +4,12 @@ class PagesController < ApplicationController
   end
 
   def map
-    @spills = Spill.all
     render 'map.html.erb'
   end
 
-  def graphs
-    render 'graphs.html.erb'
+  def all_state
+    render 'map_allstate.html.erb'
   end
+
   
 end
