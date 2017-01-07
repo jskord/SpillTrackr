@@ -3,12 +3,12 @@ class PagesController < ApplicationController
     render 'home.html.erb'
   end
 
-  def map
-    render 'map.html.erb'
+  def signup
+    render 'signup.html.erb'
   end
 
-  def all_state
-    render 'map_allstate.html.erb'
+  def map
+    render 'map.html.erb'
   end
 
   
