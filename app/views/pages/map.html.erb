@@ -35,23 +35,46 @@
       mapTypeId: 'terrain'
     });
     $.getJSON('http://localhost:3000/json/bakken_counties', function(data) {
-      for (var i = 0; i < data.length; i++) {
-        var type = data[i].Contaminant;
-        var volume = data[i].Volume;
-        var date = data[i].DateIncident;
-        var contained = data[i].Contained;
+      // infowindow = new google.maps.InfoWindow();
+      // for (var i = 0; i < data.length; i++) {
+      //   var type = data[i].Contaminant;
+      //   var volume = data[i].Volume;
+      //   var date = data[i].DateIncident;
+      //   var contained = data[i].Contained;
+      //   // var infowindow = new google.maps.InfoWindow({
+      //   //   content: type + volume + date
+      //   // });
+      //   var marker = new google.maps.Marker({
+      //     position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
+      //     icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
+      //     map: map
+      //   });
+      //   marker.content = type + volume + date;
+      //   marker.addListener('click', function() {
+      //     infowindow.setContent(marker.content);
+      //     infowindow.open(map, marker);
+      //   });
+      // }
+
+      data.forEach(function(spill) {
+        var type = spill.Contaminant;
+        var volume = spill.Volume;
+        var date = spill.DateIncident;
+        var contained = spill.Contained;
+        var units = spill.Units;
+        var id = spill.id;
         var infowindow = new google.maps.InfoWindow({
-          content: type + volume + date
+          content: "Date: " + date + "Type: " + type
         });
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
+          position: new google.maps.LatLng(spill.Latitude, spill.Longitude),
           icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
-      }
+      });
     });
   }
 
