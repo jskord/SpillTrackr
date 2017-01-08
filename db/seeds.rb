@@ -55,6 +55,21 @@ data = get_data(browser)
   data += get_data(browser)
 end
 
+url = 'http://www.ndhealth.gov/ehs/foia/spills/'
+
+puts "Creating phantom browswer..."
+browser = Selenium::WebDriver.for :phantomjs
+puts "Opening url..."
+browser.get url
+
+puts "Reading data page 1"
+data = get_data(browser)
+19.times do |index|
+  puts "Reading data page #{index + 2}"
+  browser.find_element(css: 'input[value="Next"]').click
+  data += get_data(browser)
+end
+
 browser.close
 
 puts "finished!"
