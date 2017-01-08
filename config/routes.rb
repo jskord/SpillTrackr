@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get '/bakken_counties' => 'spills#bakken_counties'
   get 'spills/:id' => 'spills#show'
 
+  post '/post' => 'posts#create'
+
 
 end

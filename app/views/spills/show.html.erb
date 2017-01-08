@@ -2,3 +2,18 @@
 <h4>Contaminant: <%= @spill.Contaminant %> </h4>
 <h4>Volume: <%= @spill.Volume %> <%= @spill.Units %></h4>
 <h4><a href = 'http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.IncidentURL %>_Summary_Report.pdf'>Incident Report</a></h4>
+<h1>Post about this spill:</h1>
+<%= form_tag '/post', method: :post do %>
+<div>
+<%= label_tag :content %>
+<%= text_field_tag :content %>
+</div>
+<div>
+<%= text_field_tag :spill_id, @spill.id %>
+</div>
+<%= submit_tag "Post" %>
+<% end %>
+<% @spill.posts.each do |post| %>
+  <h4> <%= post.user.name %> </h4>
+  <p><%= post.content %> </p>
+<% end %>

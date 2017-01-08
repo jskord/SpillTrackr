@@ -39,7 +39,7 @@
         var date = data[i].DateIncident;
         var contained = data[i].Contained;
         var infowindow = new google.maps.InfoWindow({
-          content: type + date
+          content: type + volume + date
         });
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
