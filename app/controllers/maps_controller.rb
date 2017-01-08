@@ -49,7 +49,7 @@ class MapsController < ApplicationController
     render 'last_five_years.json.jbuilder'
   end
 
-  def json_10_to_five_years_ago
+  def json_ten_to_five_years_ago
     bakken_counties = Spill.where(County: "McKenzie")
     .or(Spill.where(County: "Divide")
       .or(Spill.where(County: "Burke")
@@ -69,6 +69,29 @@ class MapsController < ApplicationController
       )
     @ten_to_five_years_ago = bakken_counties.where(DateIncident: 10.years.ago..5.years.ago)
     render 'ten_to_five_years_ago.json.jbuilder'
+  end
+
+
+  def json_fifteen_to_ten_years_ago
+    bakken_counties = Spill.where(County: "McKenzie")
+    .or(Spill.where(County: "Divide")
+      .or(Spill.where(County: "Burke")
+        .or(Spill.where(County: "Williams")
+          .or(Spill.where(County: "Dunn")
+            .or(Spill.where(County: "Billings")
+              .or(Spill.where(County: "Golden Valley")
+                .or(Spill.where(County: "Mountrail")
+                  .or(Spill.where(County: "Stark")
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    @fifteen_to_ten_years_ago = bakken_counties.where(DateIncident: 15.years.ago..10.years.ago)
+    render 'fifteen_to_ten_years_ago.json.jbuilder'
   end
   
 end
