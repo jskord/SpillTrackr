@@ -12,10 +12,12 @@ Rails.application.routes.draw do
 
   get '/json/all' => 'maps#json_index'
   get '/json/bakken_counties' => 'maps#json_bakken_counties'
+  get '/json/last_five_years' => 'maps#json_last_five_years'
+  get '/json/ten_to_five_years_ago' => 'maps#json_ten_to_five_years_ago'
 
   get '/index' => 'spills#index'
   get '/bakken_counties' => 'spills#bakken_counties'
-  get 'spills/:id' => 'spills#show'
+  get '/spills/:id' => 'spills#show'
 
   post '/post' => 'posts#create'
 

@@ -6,7 +6,7 @@ class PostsController < ApplicationController
       spill_id: params["spill_id"],
       content: params["content"])
     if post.save
-      render 'create.html.erb'
+      redirect_to "/spills/#{post.spill.id}"
     else
       render 'dfkndkf'
     end
