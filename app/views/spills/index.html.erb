@@ -1,0 +1,6 @@
+<h1>Spills</h1>
+<% @spills.each do |spill| %>
+  <h2><a href = '/spills/<%= spill.id %>'> <%= spill.IncidentURL %> </a></h2> 
+  <p><%= spill.DateIncident %></p> 
+  <p><%= spill.Contaminant %> </p>
+<% end %>

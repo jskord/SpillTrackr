@@ -7,10 +7,4 @@ class PagesController < ApplicationController
     render 'map.html.erb'
   end
 
-  def index
-    @spills = Spill.all
-    render 'index.html.erb'
-  end
-
-  
 end

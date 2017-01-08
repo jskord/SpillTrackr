@@ -1,4 +1,4 @@
-json.array! @spills.each do |spill|
+json.array! @spills_bakken_counties.each do |spill|
   json.id spill.id
   json.Latitude spill.Latitude 
   json.Longitude spill.Longitude
@@ -10,4 +10,3 @@ json.array! @spills.each do |spill|
   json.Contained spill.Contained
   json.IncidentURL spill.IncidentURL
 end
-  

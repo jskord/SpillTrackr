@@ -1,12 +1,13 @@
-class SpillsController < ApplicationController
+class MapsController < ApplicationController
 
-  def index
+  def json_index
     @spills = Spill.all
-    render 'index.html.erb'
+    render 'index.json.jbuilder'
   end
 
-  def bakken_counties
-    @spills = Spill.where(County: "McKenzie")
+  def json_bakken_counties
+
+    @spills_bakken_counties = Spill.where(County: "McKenzie")
     .or(Spill.where(County: "Divide")
       .or(Spill.where(County: "Burke")
         .or(Spill.where(County: "Williams")
@@ -21,18 +22,7 @@ class SpillsController < ApplicationController
           )
         )
       )
-    render 'bakken_counties.html.erb'
+    render 'bakken_counties.json.jbuilder'
   end
-
-  def show
-    if params[:id] == "random"
-      spill = Spill.all
-      @spill = spill.sample
-    else
-      spill_id = params[:id]
-      @spill = Spill.find_by(id: spill_id)
-    end
-    render 'show.html.erb'
-  end
-
+  
 end

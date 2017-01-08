@@ -1,0 +1,6 @@
+<h1>Bakken County Spills</h1>
+<% @spills.each do |spill| %>
+  <h2><a href = '/spills/<%= spill.id %>'> <%= spill.IncidentURL %> </a></h2>
+  <h3><%= spill.DateIncident %></h3>  
+  <p><%= spill.Contaminant %> </p>
+<% end %>
