@@ -62,9 +62,10 @@
         var date = spill.DateIncident;
         var contained = spill.Contained;
         var units = spill.Units;
-        var id = spill.id;
+        var id = spill.id.toString();
+        var str = "View Spill Report"
         var infowindow = new google.maps.InfoWindow({
-          content: "Date: " + date + "Type: " + type
+          content: "Date: " + date + "Type: " + type + str.link("/spills/" + id) + id
         });
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(spill.Latitude, spill.Longitude),
