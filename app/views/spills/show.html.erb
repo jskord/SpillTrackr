@@ -1,7 +1,6 @@
 <h4>Date: <%= @spill.DateIncident %></h4>
 <h4>Contaminant: <%= @spill.Contaminant %> </h4>
 <h4>Volume: <%= @spill.Volume %> <%= @spill.Units %></h4>
-<h4><a href = 'http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.IncidentURL %>_Summary_Report.pdf'>Incident Report</a></h4>
 <h1>Post about this spill:</h1>
 <%= form_tag '/post', method: :post do %>
 <div>
@@ -17,3 +16,5 @@
   <h4> <%= post.user.name %> </h4>
   <p><%= post.content %> </p>
 <% end %>
+<object width="600" height="700" data="http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.IncidentURL %>_Summary_Report.pdf"></object>
+<h4><a href = 'http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.IncidentURL %>_Summary_Report.pdf'>Incident Report</a></h4>
