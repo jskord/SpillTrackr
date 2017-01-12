@@ -35,40 +35,19 @@
       mapTypeId: 'terrain'
     });
     $.getJSON('http://localhost:3000/json/bakken_counties', function(data) {
-      // infowindow = new google.maps.InfoWindow();
-      // for (var i = 0; i < data.length; i++) {
-      //   var type = data[i].Contaminant;
-      //   var volume = data[i].Volume;
-      //   var date = data[i].DateIncident;
-      //   var contained = data[i].Contained;
-      //   // var infowindow = new google.maps.InfoWindow({
-      //   //   content: type + volume + date
-      //   // });
-      //   var marker = new google.maps.Marker({
-      //     position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
-      //     icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
-      //     map: map
-      //   });
-      //   marker.content = type + volume + date;
-      //   marker.addListener('click', function() {
-      //     infowindow.setContent(marker.content);
-      //     infowindow.open(map, marker);
-      //   });
-      // }
-
       data.forEach(function(spill) {
-        var type = spill.Contaminant;
-        var volume = spill.Volume;
-        var date = spill.DateIncident;
-        var contained = spill.Contained;
-        var units = spill.Units;
+        var type = spill.contaminant;
+        var volume = spill.volume;
+        var date = spill.dateIncident;
+        var contained = spill.contained;
+        var units = spill.units;
         var id = spill.id.toString();
         var str = "View Spill Report"
         var infowindow = new google.maps.InfoWindow({
           content: "Date: " + date + "Type: " + type + str.link("/spills/" + id) + id
         });
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(spill.Latitude, spill.Longitude),
+          position: new google.maps.LatLng(spill.latitude, spill.longitude),
           icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });
@@ -87,15 +66,15 @@
     });
     $.getJSON('http://localhost:3000/json/last_five_years', function(data) {
       for (var i = 0; i < data.length; i++) {
-        var type = data[i].Contaminant;
-        var volume = data[i].Volume;
-        var date = data[i].DateIncident;
-        var contained = data[i].Contained;
+        var type = data[i].contaminant;
+        var volume = data[i].volume;
+        var date = data[i].dateIncident;
+        var contained = data[i].contained;
         var infowindow = new google.maps.InfoWindow({
           content: type + date
         });
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
+          position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
           icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });
@@ -114,15 +93,15 @@
     });
     $.getJSON('http://localhost:3000/json/ten_to_five_years_ago', function(data) {
       for (var i = 0; i < data.length; i++) {
-        var type = data[i].Contaminant;
-        var volume = data[i].Volume;
-        var date = data[i].DateIncident;
-        var contained = data[i].Contained;
+        var type = data[i].contaminant;
+        var volume = data[i].volume;
+        var date = data[i].dateIncident;
+        var contained = data[i].contained;
         var infowindow = new google.maps.InfoWindow({
           content: type + date
         });
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
+          position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
           icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });
@@ -141,15 +120,15 @@
     });
     $.getJSON('http://localhost:3000/json/fifteen_to_ten_years_ago', function(data) {
       for (var i = 0; i < data.length; i++) {
-        var type = data[i].Contaminant;
-        var volume = data[i].Volume;
-        var date = data[i].DateIncident;
-        var contained = data[i].Contained;
+        var type = data[i].contaminant;
+        var volume = data[i].volume;
+        var date = data[i].dateIncident;
+        var contained = data[i].contained;
         var infowindow = new google.maps.InfoWindow({
           content: type + date
         });
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
+          position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
           icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });

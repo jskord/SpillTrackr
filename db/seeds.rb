@@ -21,18 +21,18 @@ def get_data(browser)
     end
     if row_data != {}
       s = Spill.new
-      s.IncidentURL = row_data["Incident ID"]
+      s.incidentURL = row_data["Incident ID"]
       raw_date_reported = row_data["Date Reported"].split('/')
-      s.DateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
+      s.dateReported = "#{raw_date_reported[1]}/#{raw_date_reported[0]}/#{raw_date_reported[2]}"
       raw_date_incident = row_data["Date Incident6"].split('/')
-      s.DateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
-      s.County = row_data["County"]
-      s.Latitude = row_data["Latitude"]
-      s.Longitude = row_data["Longitude"]
-      s.Contaminant = row_data["Contaminant"]
-      s.Volume = row_data["Volume"]
-      s.Units = row_data["Units"]
-      s.Contained = row_data["Contained"]
+      s.dateIncident = "#{raw_date_incident[1]}/#{raw_date_incident[0]}/#{raw_date_incident[2]}"
+      s.county = row_data["County"]
+      s.latitude = row_data["Latitude"]
+      s.longitude = row_data["Longitude"]
+      s.contaminant = row_data["Contaminant"]
+      s.volume = row_data["Volume"]
+      s.units = row_data["Units"]
+      s.contained = row_data["Contained"]
       s.user_id = 1
       s.save
     end
