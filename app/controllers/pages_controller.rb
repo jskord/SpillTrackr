@@ -7,4 +7,8 @@ class PagesController < ApplicationController
     render 'map.html.erb'
   end
 
+  def about
+    render 'about.html.erb'
+  end
+
 end
