@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/json/ten_to_five_years_ago' => 'maps#json_ten_to_five_years_ago'
   get '/json/fifteen_to_ten_years_ago' => 'maps#json_fifteen_to_ten_years_ago'
 
+  get '/json/crude_oil_by_year' => 'graphs#crude_oil_by_year'
+
   get '/index' => 'spills#index'
   get '/bakken_counties' => 'spills#bakken_counties'
   get '/spills/:id' => 'spills#show'
