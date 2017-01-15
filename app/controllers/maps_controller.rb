@@ -45,7 +45,7 @@ class MapsController < ApplicationController
           )
         )
       )
-    @last_five_years = bakken_counties.where(dateIncident: 5.years.ago..Date.today)
+    @last_five_years = bakken_counties.where(date_incident: 5.years.ago..Date.today)
     render 'last_five_years.json.jbuilder'
   end
 
@@ -67,7 +67,7 @@ class MapsController < ApplicationController
           )
         )
       )
-    @ten_to_five_years_ago = bakken_counties.where(dateIncident: 10.years.ago..5.years.ago)
+    @ten_to_five_years_ago = bakken_counties.where(date_incident: 10.years.ago..5.years.ago)
     render 'ten_to_five_years_ago.json.jbuilder'
   end
 
@@ -90,7 +90,7 @@ class MapsController < ApplicationController
           )
         )
       )
-    @fifteen_to_ten_years_ago = bakken_counties.where(dateIncident: 15.years.ago..10.years.ago)
+    @fifteen_to_ten_years_ago = bakken_counties.where(date_incident: 15.years.ago..10.years.ago)
     render 'fifteen_to_ten_years_ago.json.jbuilder'
   end
   

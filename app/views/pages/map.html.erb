@@ -38,7 +38,7 @@
       data.forEach(function(spill) {
         var type = spill.contaminant;
         var volume = spill.volume;
-        var date = spill.dateIncident;
+        var date = spill.date_incident;
         var contained = spill.contained;
         var units = spill.units;
         var id = spill.id.toString();
@@ -68,7 +68,7 @@
       for (var i = 0; i < data.length; i++) {
         var type = data[i].contaminant;
         var volume = data[i].volume;
-        var date = data[i].dateIncident;
+        var date = data[i].date_incident;
         var contained = data[i].contained;
         var infowindow = new google.maps.InfoWindow({
           content: type + date
@@ -95,7 +95,7 @@
       for (var i = 0; i < data.length; i++) {
         var type = data[i].contaminant;
         var volume = data[i].volume;
-        var date = data[i].dateIncident;
+        var date = data[i].date_incident;
         var contained = data[i].contained;
         var infowindow = new google.maps.InfoWindow({
           content: type + date
@@ -122,7 +122,7 @@
       for (var i = 0; i < data.length; i++) {
         var type = data[i].contaminant;
         var volume = data[i].volume;
-        var date = data[i].dateIncident;
+        var date = data[i].date_incident;
         var contained = data[i].contained;
         var infowindow = new google.maps.InfoWindow({
           content: type + date
