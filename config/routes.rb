@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/json/all' => 'maps#json_index'
+  get '/json/sort_by_date' => 'maps#json_sort_by_date'
 
   get '/json/spills_by_year' => 'graphs#spills_by_year'
 

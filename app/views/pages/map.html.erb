@@ -17,11 +17,33 @@
     </style>
   </head>
   <body>
+  <h1>Sort by Date</h1>
+    <%= form_tag '/json/sort_by_date', method: :get do  %>
+    <p>Beginning date</p>
+      <div>
+        <%= label_tag :year %>
+        <%= text_field_tag :start_year %>
+      </div>
+      <div>
+        <%= label_tag :month %>
+        <%= text_field_tag :start_month %>
+      </div>
+    <p>Ending Date</p>
+      <div>
+        <%= label_tag :year %>
+        <%= text_field_tag :end_year %>
+      </div>
+      <div>
+        <%= label_tag :month %>
+        <%= text_field_tag :end_month %>
+      </div>
+    <%= submit_tag "Submit" %>
+  <% end %>
   <div id="map"></div>
   <script>
   function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
+      zoom: 7,
       center: new google.maps.LatLng( 47.360470,-102.369400),
       mapTypeId: 'terrain'
     });
