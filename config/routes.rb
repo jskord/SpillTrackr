@@ -12,10 +12,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/json/all' => 'maps#json_index'
-  get '/json/bakken_counties' => 'maps#json_bakken_counties'
-  get '/json/last_five_years' => 'maps#json_last_five_years'
-  get '/json/ten_to_five_years_ago' => 'maps#json_ten_to_five_years_ago'
-  get '/json/fifteen_to_ten_years_ago' => 'maps#json_fifteen_to_ten_years_ago'
 
   get '/json/spills_by_year' => 'graphs#spills_by_year'
 

@@ -14,20 +14,20 @@ $.getJSON('http://localhost:3000/json/spills_by_year', function(data) {
     $(function () {
         Highcharts.chart('container', {
             title: {
-                text: 'Monthly Average Temperature',
+                text: 'Spills per Year',
                 x: -20
             },
             subtitle: {
-                text: 'Source: WorldClimate.com',
+                text: 'Source: ndhealth.gov/EHS/Spills/',
                 x: -20
             },
             xAxis: {
-                categories: years
+                categories: years.reverse()
             },
 
             yAxis: {
                 title: {
-                    text: 'Temperature (°C)'
+                    text: 'Reported Spills in North Dakota'
                 },
                 plotLines: [{
                     value: 0,
@@ -45,12 +45,11 @@ $.getJSON('http://localhost:3000/json/spills_by_year', function(data) {
                 borderWidth: 0
             },
             series: [{
-                name: 'Tokyo',
-                data: count,
+                name: 'Spills per Year',
+                data: count.reverse()
             }]
         });
     });
-
 });
 
 console.log('hello!!!!!');
