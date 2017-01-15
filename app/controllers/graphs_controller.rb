@@ -2,8 +2,14 @@ class GraphsController < ApplicationController
   def spills_by_year
     spills = Spill.all
 
-    @y2k = spills.select { |spill| spill.date_incident.year == 2000 }.count
+    spills_since_2000 = spills.select { |spill| spill.date_incident.year >= 2000 }
 
-    render 'crude_oil.html.erb'
+    spills_by_year = spills_since_2000.group_by { |spill| spill.date_incident.year }
+
+    spill_count_by_year = spills_by_year.map do |year, spills|
+      { year: year.to_s, count: spills.count }
+    end
+
+    render json: spill_count_by_year.to_json
   end
 end

@@ -74,24 +74,3 @@ browser.close
 
 puts "finished!"
 
-
-
-
-
-# CSV.foreach('/Spill_Seed_File.csv') do |row|
-#   url = row[0]
-#   reported = row[1]
-#   incident = row[2]
-#   county = row[3]
-#   lat = row[4].to_f
-#   long = row[5].to_f
-#   contaminant = row[6]
-#   volume = row[7].to_i
-#   units = row[8]
-#   contained = row[9]
-#   user_id = row[10].to_i
-#   Spill.create(IncidentURL: url, DateReported: reported, DateIncident: incident, County: county, Latitude: lat, Longitude: long, Contaminant: contaminant, Volume: volume, Units: units, Contained: contained, user_id: user_id,) 
-# end
-
-# puts "done"
-
