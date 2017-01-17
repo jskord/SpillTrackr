@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108014323) do
+ActiveRecord::Schema.define(version: 20170117021159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,21 +21,24 @@ ActiveRecord::Schema.define(version: 20170108014323) do
     t.integer  "user_id"
     t.integer  "spill_id"
     t.string   "content"
+    t.string   "image"
+    t.string   "url"
+    t.string   "image_url"
   end
 
   create_table "spills", force: :cascade do |t|
-    t.string   "IncidentURL"
-    t.date     "DateReported"
-    t.date     "DateIncident"
-    t.string   "County"
-    t.float    "Latitude"
-    t.float    "Longitude"
-    t.string   "Contaminant"
-    t.integer  "Volume"
-    t.string   "Units"
-    t.string   "Contained"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "incident_url"
+    t.date     "date_reported"
+    t.date     "date_incident"
+    t.string   "county"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "contaminant"
+    t.integer  "volume"
+    t.string   "units"
+    t.string   "contained"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
