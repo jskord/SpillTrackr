@@ -41,6 +41,21 @@
   <% end %>
   <div id="map"></div>
   <script>
+  $( "form" ).submit(function( event ) {
+    event.preventDefault();
+    var formData = $("form").serialize();
+    console.log(formData);
+    // $.getJSON('/json/sort_by_date')
+    $.ajax({
+      url: '/json/sort_by_date',
+      type: 'get',
+      dataType: 'json',
+      data: $('form').serialize(),
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  });
   function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
