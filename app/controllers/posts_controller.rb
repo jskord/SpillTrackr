@@ -6,7 +6,8 @@ class PostsController < ApplicationController
       spill_id: params["spill_id"],
       content: params["content"],
       image_url: params["image_url"],
-      url: params["url"])
+      url: params["url"],
+      image: params[:image])
     if post.save
       redirect_to "/spills/#{post.spill.id}"
     else

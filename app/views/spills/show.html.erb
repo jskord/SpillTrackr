@@ -1,34 +1,25 @@
 <div class="container">
   <div class="row">
-    <div id="spill_report col-md-12">
-      <h4><a href = 'http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf'>Incident Report</a></h4>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6" style="float: left;">
-      <object width="500" height="600" data="http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf"></object>
-    </div>
-    <div id="col-md-6" style="float: left">
+      <a href = 'http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf'><object width="500" height="600" data="http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf"></object></a>
       <h1>Post about this spill:</h1>
-      <%= form_tag '/post', method: :post do %>
+
+      <%= form_tag '/post', multipart: true, method: :post do %>
         <div>
-          <%= label_tag "Comment" %>
+          <%= label_tag "Got something to say about this spill?" %>
           <%= text_field_tag :content %>
         </div>
         <div>
-          <%= label_tag "Upload an Image" %>
-          <%= text_field_tag :image %>
+            <%= label_tag "Upload an image, report, or any document related to this spill" %>
+            <%= file_field_tag :image %>
         </div>
         <div>
-          <%= label_tag "Link to an Image" %>
-          <%= text_field_tag :image_url %>
-        </div>
-        <div>
-          <%= label_tag "Link to an Artical" %>
+          <%= label_tag "Post a link to further informationa about this spill" %>
           <%= text_field_tag :url %>
         </div>
-
+        <div>
+          <%= label_tag "Post a link to an image of this spill" %>
+          <%= text_field_tag :image_url %>
+        </div>
         <div>
           <%= text_field_tag :spill_id, @spill.id %>
         </div>
@@ -37,9 +28,8 @@
       <% @spill.posts.each do |post| %>
         <h4> <%= post.user.name %> </h4>
         <p><%= post.content %> </p>
-        <img src="<%= post.image_url %>"/>
+        <%= image_tag post.image.url %>
         <a href="<%= post.url %>"><%= post.url %></a>
       <% end %>
-    </div>
   </div>
 </div>
