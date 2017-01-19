@@ -41,22 +41,23 @@
   <% end %>
   <div id="map"></div>
   <script>
-  $( "form" ).submit(function( event ) {
-    event.preventDefault();
-    var formData = $("form").serialize();
-    console.log(formData);
-    // $.getJSON('/json/sort_by_date')
-    $.ajax({
-      url: '/json/sort_by_date',
-      type: 'get',
-      dataType: 'json',
-      data: $('form').serialize(),
-      success: function(data) {
-        console.log(data);
-      }
-    });
-  });
-  function initMap(){
+  // $( "form" ).submit(function( event ) {
+  //   event.preventDefault();
+  //   var formData = $("form").serialize();
+  //   console.log(formData);
+  //   // $.getJSON('/json/sort_by_date')
+  //   $.ajax({
+  //     url: '/json/sort_by_date',
+  //     type: 'get',
+  //     dataType: 'json',
+  //     data: $('form').serialize(),
+  //     success: function(data) {
+  //       console.log(data);
+  //     }
+  //   });
+  // });
+  var markers = [];
+  function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
       center: new google.maps.LatLng( 47.360470,-102.369400),
@@ -81,13 +82,16 @@
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
-        var markerCluster = new MarkerClusterer(map, markers,{
-          imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-        });
 
+        markers.push(marker);
+        // var markerCluster = new MarkerClusterer(map, markers,{
+        //   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        // });
       });
+
     });
   }
+  console.log(markers);
     </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?callback=initMap">
