@@ -56,6 +56,7 @@
   //     }
   //   });
   // });
+  console.log("Whatsup");
   var markers = [];
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -63,6 +64,7 @@
       center: new google.maps.LatLng( 47.360470,-102.369400),
       mapTypeId: 'terrain'
     });
+
     $.getJSON('http://localhost:3000/json/all', function(data) {
       data.forEach(function(spill) {
         var type = spill.contaminant;
@@ -72,7 +74,7 @@
         var id = spill.id.toString();
         var str = "View Spill Report"
         var infowindow = new google.maps.InfoWindow({
-          content: "Date: " + date + "Type: " + type + str.link("/spills/" + id) + id
+          content: "Date: " + date + " Contaminant: " + type + str.link("/spills/" + id)
         });
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(spill.latitude, spill.longitude),
@@ -84,18 +86,28 @@
         });
 
         markers.push(marker);
-        // var markerCluster = new MarkerClusterer(map, markers,{
-        //   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-        // });
       });
 
+      var markerCluster = new MarkerClusterer(map, markers,{
+          imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+      });
     });
+    console.log('hello....', markerCluster);
+
   }
+  console.log("beginning");
   console.log(markers);
+  console.log("end");
     </script>
+
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+
+
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?callback=initMap">
     </script>
+
 
 
   </body>
