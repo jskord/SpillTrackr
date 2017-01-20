@@ -58,12 +58,15 @@
   // });
   console.log("Whatsup");
   var markers = [];
+  var src = '/app/assets/kml/bakken.kml'
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
       center: new google.maps.LatLng( 47.360470,-102.369400),
-      mapTypeId: 'terrain'
+      mapTypeId: 'satellite'
     });
+
+    loadKmlLayer(src, map);
 
     $.getJSON('http://localhost:3000/json/all', function(data) {
       data.forEach(function(spill) {
@@ -72,13 +75,13 @@
         var date = spill.date_incident;
         var units = spill.units;
         var id = spill.id.toString();
-        var str = "View Spill Report"
+        var str = "Click View Details and Post About this Spill"
         var infowindow = new google.maps.InfoWindow({
-          content: "Date: " + date + " Contaminant: " + type + str.link("/spills/" + id)
+          content: "Date of Spill: " + date + " Contaminant Type: " + type + str.link("/spills/" + id)
         });
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(spill.latitude, spill.longitude),
-          icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
+          // icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });
         marker.addListener('click', function() {
@@ -95,9 +98,6 @@
     console.log('hello....', markerCluster);
 
   }
-  console.log("beginning");
-  console.log(markers);
-  console.log("end");
     </script>
 
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
