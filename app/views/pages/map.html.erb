@@ -56,14 +56,13 @@
   //     }
   //   });
   // });
-  console.log("Whatsup");
   var markers = [];
-  var src = '/app/assets/kml/bakken.kml'
+  var src = 'app/assets/kml/bakken.kml';
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
       center: new google.maps.LatLng( 47.360470,-102.369400),
-      mapTypeId: 'satellite'
+      mapTypeId: 'terrain'
     });
 
     loadKmlLayer(src, map);
@@ -75,7 +74,7 @@
         var date = spill.date_incident;
         var units = spill.units;
         var id = spill.id.toString();
-        var str = "Click View Details and Post About this Spill"
+        var str = "Click to View Details and Post About this Spill"
         var infowindow = new google.maps.InfoWindow({
           content: "Date of Spill: " + date + " Contaminant Type: " + type + str.link("/spills/" + id)
         });
@@ -95,9 +94,23 @@
           imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
       });
     });
-    console.log('hello....', markerCluster);
 
   }
+
+function loadKmlLayer(src, map) {
+  var kmlLayer = new google.maps.KmlLayer(src, {
+    suppressInfoWindows: true,
+    preserveViewport: false,
+    map: map
+  });
+  google.maps.event.addListener(kmlLayer, 'click', function(event) {
+    var content = event.featureData.infoWindowHtml;
+    var testimonial = document.getElementById('capture');
+    testimonial.innerHTML = content;
+  });
+}
+
+
     </script>
 
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

@@ -28,7 +28,12 @@
       <% @spill.posts.each do |post| %>
         <h4> <%= post.user.name %> </h4>
         <p><%= post.content %> </p>
-        <%= image_tag post.image.url %>
+        <% if post.image.url == '/images/original/missing.png' %>
+        <% else %>
+          <%= post.image.url %>
+        <% end %>
+
+
         <a href="<%= post.url %>"><%= post.url %></a>
       <% end %>
   </div>
