@@ -21,7 +21,7 @@
           <%= text_field_tag :image_url %>
         </div>
         <div>
-          <%= text_field_tag :spill_id, @spill.id %>
+          <%= hidden_field_tag :spill_id, @spill.id %>
         </div>
         <%= submit_tag "Post" %>
       <% end %>
