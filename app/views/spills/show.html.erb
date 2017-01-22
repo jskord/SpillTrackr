@@ -5,19 +5,19 @@
 
       <%= form_tag '/post', multipart: true, method: :post do %>
         <div>
-          <%= label_tag "Got something to say about this spill?" %>
+          <%= label_tag "Comment" %>
           <%= text_field_tag :content %>
         </div>
         <div>
-            <%= label_tag "Upload an image, report, or any document related to this spill" %>
+            <%= label_tag "Upload" %>
             <%= file_field_tag :image %>
         </div>
         <div>
-          <%= label_tag "Post a link to further informationa about this spill" %>
+          <%= label_tag "Link website" %>
           <%= text_field_tag :url %>
         </div>
         <div>
-          <%= label_tag "Post a link to an image of this spill" %>
+          <%= label_tag "Link image" %>
           <%= text_field_tag :image_url %>
         </div>
         <div>
