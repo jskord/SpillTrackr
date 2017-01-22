@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="screen" />
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="/css/about.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/css/lib/flexslider.css" type="text/css" media="screen" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,19 +41,19 @@
                     <% end %>
                 </ul>
             </div>
-            <div class=’container’>
+        </div>
+      </div>
+    </div>
+
+  <!--   <div class="container"> -->
+        <div class=’container’>
             <% flash.each do |name, message| %>
                 <div class=”alert alert-<%= name %> alert-dismissible” role=”alert”>
                     <button type=”button” class=”close” data-dismiss=”alert” aria-label=”Close”><span aria-hidden=”true”>&times;</span></button>
                     <%= message %>
                 </div> 
             <% end %>
-            </div>
         </div>
-      </div>
-    </div>
-
-  <!--   <div class="container"> -->
         <%= yield %>
     <!-- </div> -->
 
@@ -106,7 +108,7 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/theme.js"></script>
-
+    <script type="text/javascript" src="/js/flexslider.js"></script>
     <script type="text/javascript" src="/js/index-slider.js"></script> 
 </body>
 </html>

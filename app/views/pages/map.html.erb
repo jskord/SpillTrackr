@@ -18,53 +18,48 @@
   </head>
   <body>
   <h1>Sort by Date</h1>
-  <div class="form">
     <%= form_tag '/json/sort_by_date', method: :get do  %>
-      
-      <p class="sort_by_date_form">Beginning date</p>
-      <div class="sort_by_date_form">
         <%= label_tag :year %>
         <%= text_field_tag :start_year %>
-      </div>
-      <div class="sort_by_date_form">
         <%= label_tag :month %>
         <%= text_field_tag :start_month %>
-      </div>
-      <div class="sort_by_date_form">
-       <p class="sort_by_date_form">Ending Date</p>
         <%= label_tag :year %>
         <%= text_field_tag :end_year %>
-      </div>
-      <div class="sort_by_date_form">
         <%= label_tag :month %>
         <%= text_field_tag :end_month %>
-      </div>
     <%= submit_tag "Submit" %>
   <% end %>
-  </div>
-  <div class="map"
+  <div class="map"></div>
   <div id="map"></div>
   </body>
   <script>
+  /* global $, google */
   $( "form" ).submit(function( event ) {
     event.preventDefault();
     var formData = $("form").serialize();
     console.log(formData);
-    $.getJSON('/json/sort_by_date')
+    $.getJSON('/json/sort_by_date');
     $.ajax({
       url: '/json/sort_by_date',
       type: 'get',
       dataType: 'json',
       data: $('form').serialize(),
       success: function(data) {
-        console.log(data);
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+        markers = [];
+        markerCluster.clearMarkers();
+        createMarkers(data);
       }
     });
   });
   var markers = [];
+  var map;
+  var markerCluster;
   var src = '/app/assets/kml/bakken.kml';
   function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
       center: new google.maps.LatLng( 47.361893,-100.465128),
       mapTypeId: 'hybrid'
@@ -72,33 +67,35 @@
 
     loadKmlLayer(src, map);
 
-    $.getJSON('/json/all', function(data) {
-      data.forEach(function(spill) {
-        var type = spill.contaminant;
-        var volume = spill.volume;
-        var date = spill.date_incident;
-        var units = spill.units;
-        var id = spill.id.toString();
-        var str = "Click to View Details and Post About this Spill"
-        var infowindow = new google.maps.InfoWindow({
-          content: "Date of Spill: " + date + " Contaminant Type: " + type + str.link("/spills/" + id)
-        });
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(spill.latitude, spill.longitude),
-          map: map
-        });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
+    $.getJSON('/json/all', createMarkers);
 
-        markers.push(marker);
+  }
+
+  function createMarkers(data) {
+    data.forEach(function(spill) {
+      var type = spill.contaminant;
+      var volume = spill.volume;
+      var date = spill.date_incident;
+      var units = spill.units;
+      var id = spill.id.toString();
+      var str = "View Spill Page";
+      var infowindow = new google.maps.InfoWindow({
+        content: "Date of Spill: " + date + " Contaminant Type: " + type + str.link("/spills/" + id)
+      });
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(spill.latitude, spill.longitude),
+        map: map
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
       });
 
-      var markerCluster = new MarkerClusterer(map, markers,{
-          imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-      });
+      markers.push(marker);
     });
 
+    markerCluster = new MarkerClusterer(map, markers,{
+      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    });
   }
 
   function loadKmlLayer(src, map) {
@@ -139,9 +136,9 @@
       src="https://maps.googleapis.com/maps/api/js?callback=initMap">
     </script>
 
-    <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
-</script>
+<!--     <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?&libraries=visualization">
+</script> -->
 
 
 

@@ -14,7 +14,7 @@ $.getJSON('http://localhost:3000/json/spills_by_year', function(data) {
     $(function () {
         Highcharts.chart('container', {
             title: {
-                text: 'Spills per Year',
+                text: 'Number Reported Spills in North Dakota by Year',
                 x: -20
             },
             subtitle: {
