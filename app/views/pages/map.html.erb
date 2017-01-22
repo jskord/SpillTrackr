@@ -66,7 +66,7 @@
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
-      center: new google.maps.LatLng( 47.360470,-102.369400),
+      center: new google.maps.LatLng( 47.361893,-100.465128),
       mapTypeId: 'hybrid'
     });
 
@@ -101,21 +101,35 @@
 
   }
 
-function loadKmlLayer(src, map) {
-  var kmlLayer = new google.maps.KmlLayer(src, {
-    suppressInfoWindows: true,
-    preserveViewport: false,
-    map: map
+  function loadKmlLayer(src, map) {
+    var kmlLayer = new google.maps.KmlLayer(src, {
+      suppressInfoWindows: true,
+      preserveViewport: false,
+      map: map
+    });
+  }
+
+  var heatmap = new google.maps.visualization.HeatmapLayer({
+    data: markers
   });
-  google.maps.event.addListener(kmlLayer, 'click', function(event) {
-    var content = event.featureData.infoWindowHtml;
-    var testimonial = document.getElementById('capture');
-    testimonial.innerHTML = content;
-  });
-}
+  heatmap.setMap(map);
+
+
 
 
     </script>
+
+    <h1>Recent Posts</h1>
+    <% @posts.each do |post| %>
+      <h4><%= post.user.name %></h4>
+      <p><%= post.content %></p>
+      <p><a href="/spills/<%= post.spill.id %>"><%= post.spill.incident_url %></a></p>
+      <% if post.image.url == '/images/original/missing.png' %>
+      <% else %>
+        <img src="<%= post.image.url %>"/>
+      <% end %>
+      <a href="<%= post.url %>"><%= post.url %></a>
+    <% end %>
 
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 
@@ -124,6 +138,10 @@ function loadKmlLayer(src, map) {
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?callback=initMap">
     </script>
+
+    <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+</script>
 
 
 

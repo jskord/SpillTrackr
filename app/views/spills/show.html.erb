@@ -30,7 +30,7 @@
         <p><%= post.content %> </p>
         <% if post.image.url == '/images/original/missing.png' %>
         <% else %>
-          <%= post.image.url %>
+          <img src="<%= post.image.url %>"/>
         <% end %>
 
 
