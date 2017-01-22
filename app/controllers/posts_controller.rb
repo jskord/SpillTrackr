@@ -17,4 +17,12 @@ class PostsController < ApplicationController
       redirect_to '/sign-in'
     end
   end
+
+  def destroy
+    post_id = params[:id]
+    post = Post.find_by(id: post_id)
+    post.destroy
+    redirect_to "/map"
+    flash[:warning] = "Post Deleted!"
+  end
 end

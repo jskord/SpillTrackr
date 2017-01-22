@@ -57,15 +57,12 @@
   var markers = [];
   var map;
   var markerCluster;
-  var src = '/app/assets/kml/bakken.kml';
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
       center: new google.maps.LatLng( 47.361893,-100.465128),
       mapTypeId: 'hybrid'
     });
-
-    loadKmlLayer(src, map);
 
     $.getJSON('/json/all', createMarkers);
 
@@ -80,7 +77,7 @@
       var id = spill.id.toString();
       var str = "View Spill Page";
       var infowindow = new google.maps.InfoWindow({
-        content: "Date of Spill: " + date + " Contaminant Type: " + type + str.link("/spills/" + id)
+        content: "Date of Spill: " + date + " Contaminant Type: " + type + " " + str.link("/spills/" + id)
       });
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(spill.latitude, spill.longitude),
@@ -98,19 +95,6 @@
     });
   }
 
-  function loadKmlLayer(src, map) {
-    var kmlLayer = new google.maps.KmlLayer(src, {
-      suppressInfoWindows: true,
-      preserveViewport: false,
-      map: map
-    });
-  }
-
-  var heatmap = new google.maps.visualization.HeatmapLayer({
-    data: markers
-  });
-  heatmap.setMap(map);
-
 
 
 
@@ -125,6 +109,7 @@
       <% else %>
         <img src="<%= post.image.url %>"/>
       <% end %>
+      <img src="<%= post.image_url %>"/>
       <a href="<%= post.url %>"><%= post.url %></a>
     <% end %>
 

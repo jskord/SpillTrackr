@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/spills/:id' => 'spills#show'
 
   post '/post' => 'posts#create'
+  delete '/post/:id' => 'posts#destroy'
 
 
 end

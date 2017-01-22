@@ -32,9 +32,13 @@
         <% else %>
           <img src="<%= post.image.url %>"/>
         <% end %>
-
-
+        <img src="<%= post.image_url %>"/>
         <a href="<%= post.url %>"><%= post.url %></a>
+        <div>
+          <% if current_user == post.user %>
+            <%= link_to "Delete this post", "/post/#{post.id}", method: :delete %>
+          <% end %>
+        </div>
       <% end %>
   </div>
 </div>
