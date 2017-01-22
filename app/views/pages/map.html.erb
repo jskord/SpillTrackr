@@ -18,48 +18,53 @@
   </head>
   <body>
   <h1>Sort by Date</h1>
+  <div class="form">
     <%= form_tag '/json/sort_by_date', method: :get do  %>
-    <p>Beginning date</p>
-      <div>
+      
+      <p class="sort_by_date_form">Beginning date</p>
+      <div class="sort_by_date_form">
         <%= label_tag :year %>
         <%= text_field_tag :start_year %>
       </div>
-      <div>
+      <div class="sort_by_date_form">
         <%= label_tag :month %>
         <%= text_field_tag :start_month %>
       </div>
-    <p>Ending Date</p>
-      <div>
+      <div class="sort_by_date_form">
+       <p class="sort_by_date_form">Ending Date</p>
         <%= label_tag :year %>
         <%= text_field_tag :end_year %>
       </div>
-      <div>
+      <div class="sort_by_date_form">
         <%= label_tag :month %>
         <%= text_field_tag :end_month %>
       </div>
     <%= submit_tag "Submit" %>
   <% end %>
+  </div>
+  <div class="map"
   <div id="map"></div>
+  </body>
   <script>
-  // $( "form" ).submit(function( event ) {
-  //   event.preventDefault();
-  //   var formData = $("form").serialize();
-  //   console.log(formData);
-  //   // $.getJSON('/json/sort_by_date')
-  //   $.ajax({
-  //     url: '/json/sort_by_date',
-  //     type: 'get',
-  //     dataType: 'json',
-  //     data: $('form').serialize(),
-  //     success: function(data) {
-  //       console.log(data);
-  //     }
-  //   });
-  // });
+  $( "form" ).submit(function( event ) {
+    event.preventDefault();
+    var formData = $("form").serialize();
+    console.log(formData);
+    $.getJSON('/json/sort_by_date')
+    $.ajax({
+      url: '/json/sort_by_date',
+      type: 'get',
+      dataType: 'json',
+      data: $('form').serialize(),
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  });
   var markers = [];
-  var src = 'app/assets/kml/bakken.kml';
+  var src = '/app/assets/kml/bakken.kml';
   function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
       center: new google.maps.LatLng( 47.360470,-102.369400),
       mapTypeId: 'hybrid'
@@ -67,7 +72,7 @@
 
     loadKmlLayer(src, map);
 
-    $.getJSON('http://localhost:3000/json/all', function(data) {
+    $.getJSON('/json/all', function(data) {
       data.forEach(function(spill) {
         var type = spill.contaminant;
         var volume = spill.volume;
@@ -80,7 +85,6 @@
         });
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(spill.latitude, spill.longitude),
-          // icon: 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png',
           map: map
         });
         marker.addListener('click', function() {
