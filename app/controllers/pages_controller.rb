@@ -4,13 +4,8 @@ class PagesController < ApplicationController
   end
 
   def map
-    post_id = Post.last.id
-    @posts = []
-    8.times do |post|
-      post = Post.find_by(id: post_id)
-      @posts << post
-      post_id = post_id - 1
-    end
+    @posts = Post.all
+
 
     render 'map.html.erb'
   end

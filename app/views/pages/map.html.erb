@@ -18,6 +18,7 @@
   </head>
   <body>
   <h1>Sort by Date</h1>
+  <div id="form_sort">
     <%= form_tag '/json/sort_by_date', method: :get do  %>
         <%= label_tag :year %>
         <%= text_field_tag :start_year %>
@@ -29,6 +30,7 @@
         <%= text_field_tag :end_month %>
     <%= submit_tag "Submit" %>
   <% end %>
+  </div>
   <div class="map"></div>
   <div id="map"></div>
   </body>
@@ -49,14 +51,12 @@
           markers[i].setMap(null);
         }
         markers = [];
-        markerCluster.clearMarkers();
         createMarkers(data);
       }
     });
   });
   var markers = [];
   var map;
-  var markerCluster;
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
@@ -89,10 +89,6 @@
 
       markers.push(marker);
     });
-
-    markerCluster = new MarkerClusterer(map, markers,{
-      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-    });
   }
 
 
@@ -100,8 +96,7 @@
 
     </script>
 
-    <h1>Recent Posts</h1>
-    <% @posts.each do |post| %>
+      <% @posts.each do |post| %>
       <h4><%= post.user.name %></h4>
       <p><%= post.content %></p>
       <p><a href="/spills/<%= post.spill.id %>"><%= post.spill.incident_url %></a></p>
@@ -113,6 +108,7 @@
       <a href="<%= post.url %>"><%= post.url %></a>
     <% end %>
 
+    
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 
 

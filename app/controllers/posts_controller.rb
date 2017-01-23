@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     post_id = params[:id]
     post = Post.find_by(id: post_id)
     post.destroy
-    redirect_to "/map"
+    redirect_to "/"
     flash[:warning] = "Post Deleted!"
   end
 end
