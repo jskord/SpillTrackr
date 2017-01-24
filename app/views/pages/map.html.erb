@@ -91,7 +91,7 @@
     $.getJSON('/json/all', createMarkers);
 
         var ctaLayer = new google.maps.KmlLayer({
-      url: 'https://sites.google.com/site/jskordkmlfiles/kml_files/Bakken.kml?revision=1',
+      url: 'https://sites.google.com/site/jskordkmlfiles/kml_files/Bakken.kml?revision=2',
       map: map
     });
 
@@ -121,13 +121,13 @@
   }
     </script>
 
-    <h1>Recent Posts</h1>
+    <h1><strong>Recent Posts</strong></h1>
 
       <% @posts.each do |post| %>
         <h1 style = "color:green"><%= post.user.name %></h1>
-        <p><i style = "color:brown"> Posted about a spill that occured on <%= post.spill.date_incident %> </i></p>
-        <p><i style = "color:brown"> The contaminant was <%= post.spill.contaminant %> </i></p>
-        <i style = "color:brown"> The volume of the spill was <%= post.spill.volume %> <%= post.spill.units %> </i>
+        <h4><i style = "color:brown"> Posted about a spill that occured on <strong style = "color:black"><%= post.spill.date_incident %> </strong></i></h4>
+        <h4><i style = "color:brown"> The contaminant was <strong style = "color:black"><%= post.spill.contaminant %> </strong></i></h4>
+        <h4><i style = "color:brown"> The volume of the spill was <strong style = "color:black"><%= post.spill.volume %> <%= post.spill.units %> </strong></i></h4>
         <h4><a href="/spills/<%= post.spill.id %>">View Spill Report</a></h4>
         <h4><%= post.content %></h4>
         <% if post.image.url == '/images/original/missing.png' %>

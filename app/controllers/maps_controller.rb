@@ -10,6 +10,32 @@ class MapsController < ApplicationController
         spills_since_2000_bakken_counties << spill
       elsif spill.county == "Divide"
         spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Burke"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Williams"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Dunn"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Billings"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Golden Valley"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Montrail"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Stark"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Mercer"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "McLean"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Ward"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Renville"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Slope"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Hettinger"
+        spills_since_2000_bakken_counties << spill
       end
     end
     
