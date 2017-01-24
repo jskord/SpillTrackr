@@ -1,8 +1,32 @@
 class MapsController < ApplicationController
 
   def json_index
-    all = Spill.all
-    render json: all.to_json
+    spills = Spill.all
+    spills_since_2000 = spills.select { |spill| spill.date_incident.year >= 2008 }
+    spills_since_2000_bakken_counties = []
+
+    spills_since_2000.each do |spill|
+      if spill.county == "McKenzie"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Divide"
+        spills_since_2000_bakken_counties << spill
+      end
+    end
+    
+    render json: spills_since_2000_bakken_counties.to_json
+
+
+    # @spills_bakken_counties = Spill.where(County: "McKenzie")
+    # .or(Spill.where(County: "Divide")
+    #   .or(Spill.where(County: "Burke")
+    #     .or(Spill.where(County: "Williams")
+    #       .or(Spill.where(County: "Dunn")
+    #         .or(Spill.where(County: "Billings")
+    #           .or(Spill.where(County: "Golden Valley")
+    #             .or(Spill.where(County: "Mountrail")
+    #               .or(Spill.where(County: "Stark")
+
+
   end
 
 
