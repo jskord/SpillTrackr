@@ -5,25 +5,6 @@ class SpillsController < ApplicationController
     render 'index.html.erb'
   end
 
-  def bakken_counties
-    @spills = Spill.where(County: "McKenzie")
-    .or(Spill.where(County: "Divide")
-      .or(Spill.where(County: "Burke")
-        .or(Spill.where(County: "Williams")
-          .or(Spill.where(County: "Dunn")
-            .or(Spill.where(County: "Billings")
-              .or(Spill.where(County: "Golden Valley")
-                .or(Spill.where(County: "Mountrail")
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    render 'bakken_counties.html.erb'
-  end
-
   def show
     if params[:id] == "random"
       spill = Spill.all

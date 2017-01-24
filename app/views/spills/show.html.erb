@@ -1,3 +1,28 @@
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">
+                <img src='/assets/logo.jpeg'/>
+            </a>
+            <div class="nav-collapse collapse">
+                <% if current_user %>
+                    <p style="color:red;"> Welcome <%= current_user.name %></p>
+                <% end %> 
+                <ul class="nav pull-right">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/map">View Map</a></li>
+                    <% if current_user %>
+                        <li><a class="btn-header" href="/logout">Logout</a></li>
+                    <% else %>
+                        <li><a class="btn-header" href="/sign-up">Signup</a></li>
+                        <li><a class="btn-header" href="/sign-in">Login</a></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
 <div class="container">
   <div class="row">
     <object width="500" height="600" data="http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf"></object>
@@ -26,7 +51,7 @@
         <%= submit_tag "Post" %>
       <% end %>
       <% @spill.posts.each do |post| %>
-        <h4> <%= post.user.name %> </h4>
+        <h1 style="color:green"> <%= post.user.name %> </h1>
         <p><%= post.content %> </p>
         <% if post.image.url == '/images/original/missing.png' %>
         <% else %>

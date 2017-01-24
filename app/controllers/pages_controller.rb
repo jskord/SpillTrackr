@@ -4,7 +4,8 @@ class PagesController < ApplicationController
   end
 
   def map
-    @posts = Post.all
+    posts = Post.all
+    @posts = posts.reverse
 
 
     render 'map.html.erb'
