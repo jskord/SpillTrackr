@@ -125,13 +125,12 @@
 
       <% @posts.each do |post| %>
         <h1 style = "color:green"><%= post.user.name %></h1>
-        <i style = "color:blue"> Posted about a spill that occured on <%= post.spill.date_incident %> </i>
-        <i style = "color:brown"> The contaminant was <%= post.spill.contaminant %> </i>
-        <i style = "color:red"> The volume of the spill was <%= post.spill.volume %> <%= post.spill.units %> </i>
-        <h4 style = "color:red"><a href="/spills/<%= post.spill.id %>">View Spill Report</a></h4>
+        <p><i style = "color:brown"> Posted about a spill that occured on <%= post.spill.date_incident %> </i></p>
+        <p><i style = "color:brown"> The contaminant was <%= post.spill.contaminant %> </i></p>
+        <i style = "color:brown"> The volume of the spill was <%= post.spill.volume %> <%= post.spill.units %> </i>
+        <h4><a href="/spills/<%= post.spill.id %>">View Spill Report</a></h4>
         <h4><%= post.content %></h4>
         <% if post.image.url == '/images/original/missing.png' %>
-          <p> --- </p>
         <% else %>
           <img width = "500px" src="<%= post.image.url %>"/>
         <% end %>
