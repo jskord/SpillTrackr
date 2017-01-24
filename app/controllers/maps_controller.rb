@@ -59,8 +59,44 @@ class MapsController < ApplicationController
   def json_sort_by_date
 
     spills = Spill.all
+    spills_since_2000 = spills.select { |spill| spill.date_incident.year >= 2008 }
+    spills_since_2000_bakken_counties = []
 
-    start_year = spills.select { |spill| spill.date_incident.year >= params[:start_year].to_i }
+    spills_since_2000.each do |spill|
+      if spill.county == "McKenzie"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Divide"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Burke"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Williams"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Dunn"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Billings"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Golden Valley"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Montrail"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Stark"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Mercer"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "McLean"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Ward"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Renville"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Slope"
+        spills_since_2000_bakken_counties << spill
+      elsif spill.county == "Hettinger"
+        spills_since_2000_bakken_counties << spill
+      end
+    end
+
+    start_year = spills_since_2000_bakken_counties.select { |spill| spill.date_incident.year >= params[:start_year].to_i }
 
     start_year_month = start_year.select { |spill| spill.date_incident.month >= params[:start_month].to_i }
 
