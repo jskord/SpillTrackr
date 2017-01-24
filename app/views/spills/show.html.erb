@@ -50,15 +50,25 @@
         </div>
         <%= submit_tag "Post" %>
       <% end %>
-      <% @spill.posts.each do |post| %>
+      <% @spill.posts.reverse.each do |post| %>
         <h1 style="color:green"> <%= post.user.name %> </h1>
         <p><%= post.content %> </p>
         <% if post.image.url == '/images/original/missing.png' %>
+          <p></p>
         <% else %>
-          <img src="<%= post.image.url %>"/>
+          <img width = "500px" src="<%= post.image.url %>"/>
         <% end %>
-        <img src="<%= post.image_url %>"/>
-        <a href="<%= post.url %>"><%= post.url %></a>
+        <% if post.image_url %>
+          <img width="500px" src="<%= post.image_url %>"/>
+        <% else %>
+          <p></p>
+        <% end %>
+        <h4><a href="<%= post.url %>"><%= post.url %></a></h4>
+        <% if post.url == "" %>
+          <p></p>
+        <% else %>
+          <object width="400px" height="600" data="<%= post.url %>"></object>
+        <% end %>
         <div>
           <% if current_user == post.user %>
             <%= link_to "Delete this post", "/post/#{post.id}", method: :delete %>
