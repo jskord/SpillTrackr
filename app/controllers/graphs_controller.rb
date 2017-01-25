@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   def spills_by_year
     spills = Spill.all
 
-    spills_since = spills.select { |spill| spill.date_incident.year >= 1970 }
+    spills_since = spills.select { |spill| spill.date_incident.year >= 2000 }
 
     spills_by_year = spills_since.group_by { |spill| spill.date_incident.year }
 

@@ -20,7 +20,7 @@ class MapsController < ApplicationController
         spills_since_2000_bakken_counties << spill
       elsif spill.county == "Golden Valley"
         spills_since_2000_bakken_counties << spill
-      elsif spill.county == "Montrail"
+      elsif spill.county == "Mountrail"
         spills_since_2000_bakken_counties << spill
       elsif spill.county == "Stark"
         spills_since_2000_bakken_counties << spill
@@ -77,7 +77,7 @@ class MapsController < ApplicationController
         spills_since_2000_bakken_counties << spill
       elsif spill.county == "Golden Valley"
         spills_since_2000_bakken_counties << spill
-      elsif spill.county == "Montrail"
+      elsif spill.county == "Mountrail"
         spills_since_2000_bakken_counties << spill
       elsif spill.county == "Stark"
         spills_since_2000_bakken_counties << spill

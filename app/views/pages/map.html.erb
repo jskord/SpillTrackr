@@ -28,7 +28,6 @@
                     <p style="color:red;"> Welcome <%= current_user.name %></p>
                 <% end %> 
                 <ul class="nav pull-right">
-                    <li><a href="/about">About</a></li>
                     <li><a href="/map">View Map</a></li>
                     <% if current_user %>
                         <li><a class="btn-header" href="/logout">Logout</a></li>
@@ -75,6 +74,9 @@
           markers[i].setMap(null);
         }
         markers = [];
+        if (useMarkerCluser) {
+          markerCluster.clearMarkers();
+        }
         createMarkers(data);
         document.getElementById('submit-button').disabled = false;
       }
@@ -82,6 +84,8 @@
   });
   var markers = [];
   var map;
+  var markerCluster;
+  var useMarkerCluser = false;
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
@@ -118,7 +122,14 @@
       });
 
       markers.push(marker);
+
     });
+
+    if (useMarkerCluser) {
+      markerCluster = new MarkerClusterer(map, markers,{
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+      });
+    }
   }
     </script>
 
@@ -150,18 +161,23 @@
 
     
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-
-
-
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?callback=initMap">
     </script>
-
-<!--     <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?&libraries=visualization">
-</script> -->
-
-
-
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+<script>
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+</script>
+
