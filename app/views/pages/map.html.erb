@@ -45,14 +45,14 @@
   <div id="form_sort">
     <%= form_tag '/json/sort_by_date', method: :get do  %>
         <%= label_tag :year %>
-        <%= text_field_tag :start_year %>
+        <%= text_field_tag :start_year, 2008 %>
         <%= label_tag :month %>
-        <%= text_field_tag :start_month %>
+        <%= text_field_tag :start_month, 1 %>
         <%= label_tag :year %>
-        <%= text_field_tag :end_year %>
+        <%= text_field_tag :end_year, 2017 %>
         <%= label_tag :month %>
-        <%= text_field_tag :end_month %>
-    <%= submit_tag "Submit" %>
+        <%= text_field_tag :end_month, 1 %>
+    <%= submit_tag "Submit", id: 'submit-button' %>
   <% end %>
   </div>
   <div class="map"></div>
@@ -76,6 +76,7 @@
         }
         markers = [];
         createMarkers(data);
+        document.getElementById('submit-button').disabled = false;
       }
     });
   });
@@ -106,7 +107,7 @@
       var id = spill.id.toString();
       var str = "View Spill Page";
       var infowindow = new google.maps.InfoWindow({
-        content: "Date:" + date + "Contaminant:" + type + " " + "Volume:" + volume + units + str.link("/spills/" + id)
+        content: "Date:" + " " + date + " Contaminant: " + type + " " + "Volume:" + volume + units + " " + str.link("/spills/" + id)
       });
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(spill.latitude, spill.longitude),

@@ -1,3 +1,28 @@
+<div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">
+                <img src='/assets/logo.jpeg'/>
+            </a>
+            <div class="nav-collapse collapse">
+                <% if current_user %>
+                    <p style="color:red;"> Welcome <%= current_user.name %></p>
+                <% end %> 
+                <ul class="nav pull-right">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/map">View Map</a></li>
+                    <% if current_user %>
+                        <li><a class="btn-header" href="/logout">Logout</a></li>
+                    <% else %>
+                        <li><a class="btn-header" href="/sign-up">Signup</a></li>
+                        <li><a class="btn-header" href="/sign-in">Login</a></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
 <h1>Signup!</h1>
 <%= form_tag '/users', method: :post do  %>
   <div>

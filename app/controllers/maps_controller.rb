@@ -2,7 +2,7 @@ class MapsController < ApplicationController
 
   def json_index
     spills = Spill.all
-    spills_since_2000 = spills.select { |spill| spill.date_incident.year >= 2008 }
+    spills_since_2000 = spills.select { |spill| spill.date_incident.year >= 2000 }
     spills_since_2000_bakken_counties = []
 
     spills_since_2000.each do |spill|
