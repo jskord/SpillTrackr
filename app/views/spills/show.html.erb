@@ -22,57 +22,69 @@
       </div>
     </div>
 
-<div class="container">
-  <div class="row">
-    <object width="500" height="600" data="http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf"></object>
-      <h1>Post about this spill:</h1>
+<!-- <div class="container">
+  <div class="row"> -->
+  <table>
+    <tr>
+      <td id="form">
+      <object width="500" height="600" data="http://www.ndhealth.gov/EHS/FOIA/Spills/Summary_Reports/<%= @spill.incident_url %>_Summary_Report.pdf"></object>
+      </td>
+      <td id="form">
+        <h1>Post about this spill:</h1>
 
-      <%= form_tag '/post', multipart: true, method: :post do %>
-        <div>
-          <%= label_tag "Comment" %>
-          <%= text_field_tag :content %>
-        </div>
-        <div>
-            <%= label_tag "Upload" %>
-            <%= file_field_tag :image %>
-        </div>
-        <div>
-          <%= label_tag "Link website" %>
-          <%= text_field_tag :url %>
-        </div>
-        <div>
-          <%= label_tag "Link image" %>
-          <%= text_field_tag :image_url %>
-        </div>
-        <div>
-          <%= hidden_field_tag :spill_id, @spill.id %>
-        </div>
-        <%= submit_tag "Post" %>
-      <% end %>
-      <% @spill.posts.reverse.each do |post| %>
-        <h1 style="color:green"> <%= post.user.name %> </h1>
-        <p><%= post.content %> </p>
-        <% if post.image.url == '/images/original/missing.png' %>
-          <p></p>
-        <% else %>
-          <img width = "500px" src="<%= post.image.url %>"/>
+        <%= form_tag '/post', multipart: true, method: :post do %>
+          <div>
+            <h3>Comment</h3>
+            <%= text_field_tag :content %>
+          </div>
+          <div>
+              <h3>Upload an Image</h3>
+              <%= file_field_tag :image %>
+          </div>
+          <div>
+            <h3>Paste a Link</h3>
+            <%= text_field_tag :url %>
+          </div>
+          <div>
+            <h3>Link an Image</h3>
+            <%= text_field_tag :image_url %>
+          </div>
+          <div>
+            <strong><%= hidden_field_tag :spill_id, @spill.id %></strong>
+          </div>
+          <%= submit_tag "Post" %>
         <% end %>
-        <% if post.image_url %>
-          <img width="500px" src="<%= post.image_url %>"/>
-        <% else %>
-          <p></p>
-        <% end %>
-        <h4><a href="<%= post.url %>"><%= post.url %></a></h4>
-        <% if post.url == "" %>
-          <p></p>
-        <% else %>
-          <iframe height = "600px" width = "600px" src="<%= post.url %>"></iframe>
-        <% end %>
-        <div>
-          <% if current_user == post.user %>
-            <%= link_to "Delete this post", "/post/#{post.id}", method: :delete %>
+        </td>
+        </tr>
+        </table>
+        <table>
+        <tr>
+        <td id="form">
+        <% @spill.posts.reverse.each do |post| %>
+          <h1> <%= post.user.name %> </h1>
+          <p><%= post.content %> </p>
+          <% if post.image.url == '/images/original/missing.png' %>
+          <% else %>
+            <img width = "500px" src="<%= post.image.url %>"/>
           <% end %>
-        </div>
-      <% end %>
-  </div>
-</div>
+          <% if post.image_url %>
+            <img width="500px" src="<%= post.image_url %>"/>
+          <% else %>
+            <p></p>
+          <% end %>
+          <h4><a href="<%= post.url %>"><%= post.url %></a></h4>
+          <% if post.url == "" %>
+          <p></p>
+          <% else %>
+          <iframe width="560" height="315" src="<%= post.url %>" frameborder="0" allowfullscreen></iframe>
+          <% end %>
+          <div>
+            <% if current_user == post.user %>
+              <%= link_to "Delete this post", "/post/#{post.id}", method: :delete %>
+            <% end %>
+          </div>
+        <% end %>
+        </td>
+        </tr>
+        </table>
+

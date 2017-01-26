@@ -77,7 +77,7 @@
 #contact .contact .submit .right input[type="submit"]:hover{
 	background: #252528;
 }
-#contact .map{
+/*#contact .map{
 	margin: 0;
 }
 #contact .map iframe{
@@ -175,7 +175,7 @@
 }
 #contact .map .box_wrapp a.btn:hover{
 	background: #252528;
-}
+}*/
 .contacticos{
 	background: url('../img/contact_icos.png') no-repeat;
 	width: 24px;

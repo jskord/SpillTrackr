@@ -42,21 +42,23 @@
     </div>
   <h1>Sort by Date</h1>
   <div id="form_sort">
+  
     <%= form_tag '/json/sort_by_date', method: :get do  %>
-        <%= label_tag :year %>
-        <%= text_field_tag :start_year, 2008 %>
-        <%= label_tag :month %>
-        <%= text_field_tag :start_month, 1 %>
-        <%= label_tag :year %>
-        <%= text_field_tag :end_year, 2017 %>
-        <%= label_tag :month %>
-        <%= text_field_tag :end_month, 1 %>
-    <%= submit_tag "Submit", id: 'submit-button' %>
+        <div class="my-class">
+          <%= label_tag :year %>
+          <%= text_field_tag :start_year, 2008 %>
+          <%= label_tag :month %>
+          <%= text_field_tag :start_month, 1 %>
+          <%= label_tag :year %>
+          <%= text_field_tag :end_year, 2017 %>
+          <%= label_tag :month %>
+          <%= text_field_tag :end_month, 1 %>
+          <%= submit_tag "Submit", id: 'submit-button' %>
+        </div>
   <% end %>
+  
   </div>
-  <div class="map"></div>
   <div id="map"></div>
-  </body>
   <script>
   /* global $, google */
   $( "form" ).submit(function( event ) {
@@ -89,8 +91,12 @@
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 7,
+      mapTypeControl: true,
       center: new google.maps.LatLng( 47.361893,-100.465128),
-      mapTypeId: 'hybrid'
+      mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      mapTypeIds: ['roadmap', 'terrain', 'hybrid']
+      }
     });
 
     $.getJSON('/json/all', createMarkers);
@@ -136,26 +142,22 @@
     <h1><strong>Recent Posts</strong></h1>
 
       <% @posts.each do |post| %>
-        <h1 style = "color:green"><%= post.user.name %></h1>
-        <h4><i style = "color:brown"> Posted about a spill that occured on <strong style = "color:black"><%= post.spill.date_incident %> </strong></i></h4>
-        <h4><i style = "color:brown"> The contaminant was <strong style = "color:black"><%= post.spill.contaminant %> </strong></i></h4>
-        <h4><i style = "color:brown"> The volume of the spill was <strong style = "color:black"><%= post.spill.volume %> <%= post.spill.units %> </strong></i></h4>
-        <h4><a href="/spills/<%= post.spill.id %>">View Spill Report</a></h4>
-        <h4><%= post.content %></h4>
+        <h1><%= post.user.name %></h1>
+        <div class="posts"><h4> <i>Posted about a spill that occured on <%= post.spill.date_incident %>, the contaminant was <%= post.spill.contaminant %>, and the volume of the spill was <%= post.spill.volume %> <%= post.spill.units %><i></h4></div>
+        <p><a href="/spills/<%= post.spill.id %>">View Spill Report</a></p>
+        <p> <%= post.content %> </p>
         <% if post.image.url == '/images/original/missing.png' %>
         <% else %>
           <img width = "500px" src="<%= post.image.url %>"/>
         <% end %>
         <% if post.image_url %>
           <img width="500px" src="<%= post.image_url %>"/>
-        <% else %>
-          <p> --- </p>
         <% end %>
         <h4><a href="<%= post.url %>"><%= post.url %></a></h4>
         <% if post.url == "" %>
           <p></p>
         <% else %>
-          <object width="400px" height="600" data="<%= post.url %>"></object>
+          <iframe width="560" height="315" src="<%= post.url %>" frameborder="0" allowfullscreen></iframe>
         <% end %>
       <% end %>
 
@@ -166,16 +168,6 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 <script>
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
