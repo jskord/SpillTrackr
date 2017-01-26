@@ -95,7 +95,7 @@
       center: new google.maps.LatLng( 47.361893,-100.465128),
       mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-      mapTypeIds: ['roadmap', 'terrain', 'hybrid']
+      mapTypeIds: ['hybrid', 'roadmap', 'terrain']
       }
     });
 
@@ -103,6 +103,7 @@
 
         var ctaLayer = new google.maps.KmlLayer({
       url: 'https://sites.google.com/site/jskordkmlfiles/kml_files/Bakken.kml?revision=2',
+      preserveViewport: true,
       map: map
     });
 
