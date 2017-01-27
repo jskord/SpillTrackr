@@ -112,10 +112,10 @@ class MapsController < ApplicationController
     # render json: year_month_range.to_json
   end
 
-  def show
+  def json_show
     spill_id = params[:id]
-    spill = Spill.find_by(id: spill_id)
-    render json: spill.to_json
+    @spill = Spill.find_by(id: spill_id)
+    render json: @spill.to_json
   end
 
 end

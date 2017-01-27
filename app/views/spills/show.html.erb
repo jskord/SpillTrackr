@@ -42,9 +42,9 @@
         </div>
       </div>
     </div>
-  <%= form_tag '/json/show', multipart: true, method: :get do %>
+  <%= form_tag '/json/show', method: :get do %>
   <%= hidden_field_tag :spill_id, @spill.id %>
-  <%= submit_tag "Post" %>
+  <%= submit_tag "Show Location" %>
   <% end %>
   <div id="mapShow"></div>
   <table>
@@ -124,16 +124,24 @@
           
         });
 
-      $.getJSON('/json/show', createMarker);
 
-      function createMarker(data) {
-        data.foreach(function(spill) {
-          var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(spill.latitude, spill.longitude),
-            map: map
-          });
+        var marker = new google.maps.Marker({
+          position: {lat: 48.52467, lng: -102.85350},
+          map: map
         });
-      };
+      }
+
+    //   $.getJSON('/json/show', createMarker);
+
+    //   function createMarker(data) {
+    //     data.foreach(function(spill) {
+    //       var marker = new google.maps.Marker({
+    //         position: new google.maps.LatLng(spill.latitude, spill.longitude),
+    //         map: map
+    //       });
+    //     });
+    //   };
+    // }
 
 
     //     $.getJSON('/json/show', createMarkers);
