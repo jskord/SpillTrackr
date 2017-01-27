@@ -139,12 +139,12 @@
     }
   }
     </script>
-
+<div id="mapPosts">
     <h1><strong>Recent Posts</strong></h1>
 
       <% @posts.each do |post| %>
         <h1><%= post.user.name %></h1>
-        <div class="posts"><h4> <i>Posted about a spill that occured on <%= post.spill.date_incident %>, the contaminant was <%= post.spill.contaminant %>, and the volume of the spill was <%= post.spill.volume %> <%= post.spill.units %><i></h4></div>
+        <div class="posts"><h4>Posted about a spill that occured on <%= post.spill.date_incident %>, the contaminant was <%= post.spill.contaminant %>, and the volume of the spill was <%= post.spill.volume %> <%= post.spill.units %><i></h4></div>
         <p><a href="/spills/<%= post.spill.id %>">View Spill Report</a></p>
         <p> <%= post.content %> </p>
         <% if post.image.url == '/images/original/missing.png' %>
@@ -162,6 +162,7 @@
         <% end %>
       <% end %>
 
+</div>
     
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer
