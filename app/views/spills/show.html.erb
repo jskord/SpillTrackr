@@ -1,3 +1,24 @@
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #mapShow {
+        height: 60%;
+        outline: solid black;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
@@ -21,9 +42,7 @@
         </div>
       </div>
     </div>
-
-<!-- <div class="container">
-  <div class="row"> -->
+  <div id="mapShow"></div>
   <table>
     <tr>
       <td id="form">
@@ -88,3 +107,31 @@
         </tr>
         </table>
 
+  <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('mapShow'), {
+          zoom: 7,
+          center: new google.maps.LatLng( 47.361893,-100.465128),
+          mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            mapTypeIds: ['hybrid', 'roadmap', 'terrain']
+          }
+          
+        });
+
+
+      }
+
+
+    //     $.getJSON('/json/show', createMarkers);
+
+    //     var ctaLayer = new google.maps.KmlLayer({
+    //   url: 'https://sites.google.com/site/jskordkmlfiles/kml_files/Bakken.kml?revision=2',
+    //   preserveViewport: true,
+    //   map: map
+    // });
+  </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhiLyzchIrDbps7sdNjA3BpO72DC2Efyo&callback=initMap"
+    async defer></script>
