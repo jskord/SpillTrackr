@@ -42,6 +42,10 @@
         </div>
       </div>
     </div>
+  <%= form_tag '/json/show', multipart: true, method: :get do %>
+  <%= hidden_field_tag :spill_id, @spill.id %>
+  <%= submit_tag "Post" %>
+  <% end %>
   <div id="mapShow"></div>
   <table>
     <tr>
@@ -120,8 +124,16 @@
           
         });
 
+      $.getJSON('/json/show', createMarker);
 
-      }
+      function createMarker(data) {
+        data.foreach(function(spill) {
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(spill.latitude, spill.longitude),
+            map: map
+          });
+        });
+      };
 
 
     //     $.getJSON('/json/show', createMarkers);

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/json/all' => 'maps#json_index'
   get '/json/sort_by_date' => 'maps#json_sort_by_date'
+  get '/json/show' => 'maps#json_show'
 
   get '/json/spills_by_year' => 'graphs#spills_by_year'
 
