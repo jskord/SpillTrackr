@@ -36,7 +36,7 @@ $.getJSON('http://localhost:3000/json/spills_by_year', function(data) {
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: ''
             },
             legend: {
                 layout: 'vertical',
@@ -45,7 +45,7 @@ $.getJSON('http://localhost:3000/json/spills_by_year', function(data) {
                 borderWidth: 0
             },
             series: [{
-                name: 'Spills per Year',
+                name: 'Spills',
                 data: count.reverse()
             }]
         });
