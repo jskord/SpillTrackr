@@ -3,13 +3,12 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
       #mapShow {
         height: 60%;
+        width:90%;
+        margin: 0 auto;
         outline: solid black;
       }
-      /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
@@ -43,9 +42,34 @@
       </div>
     </div>
   <%= form_tag '/json/show', method: :get do %>
-  <%= hidden_field_tag :spill_id, @spill.id %>
-  <%= submit_tag "Show Location" %>
+    <%= hidden_field_tag :spill_id, @spill.id %>
+    <%= submit_tag "Show Location", id: 'submit-button' %> %>
   <% end %>
+  <script>
+  $( "form" ).submit(function( event ) {
+    event.preventDefault();
+    var formData = $("form").serialize();
+    console.log(formData);
+    $.getJSON('/json/show');
+    $.ajax({
+      url: '/json/sort_by_date',
+      type: 'get',
+      dataType: 'json',
+      data: $('form').serialize(),
+      success: function(data) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+        markers = [];
+        if (useMarkerCluser) {
+          markerCluster.clearMarkers();
+        }
+        createMarkers(data);
+        document.getElementById('submit-button').disabled = false;
+      }
+    });
+  });
+</script>
   <div id="mapShow"></div>
   <table>
     <tr>
