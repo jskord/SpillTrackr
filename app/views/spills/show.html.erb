@@ -16,8 +16,6 @@
       }
     </style>
   </head>
-
-
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
@@ -41,36 +39,19 @@
         </div>
       </div>
     </div>
-  <%= form_tag '/json/show', method: :get do %>
-    <%= hidden_field_tag :spill_id, @spill.id %>
-    <%= submit_tag "Show Location", id: 'submit-button' %> %>
-  <% end %>
-  <script>
-  $( "form" ).submit(function( event ) {
-    event.preventDefault();
-    var formData = $("form").serialize();
-    console.log(formData);
-    $.getJSON('/json/show');
-    $.ajax({
-      url: '/json/sort_by_date',
-      type: 'get',
-      dataType: 'json',
-      data: $('form').serialize(),
-      success: function(data) {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(null);
-        }
-        markers = [];
-        if (useMarkerCluser) {
-          markerCluster.clearMarkers();
-        }
-        createMarkers(data);
-        document.getElementById('submit-button').disabled = false;
+    <%= form_tag '/json/show', method: :get do  %>
+        <%= hidden_field_tag :spill_id, @spill.id %>
+        <%= submit_tag "Show Location", id: 'submit-button' %>
+    <% end %>
+    <div id="mapShow"></div>
+    <script>
+      function initMap() {
+        mapShow = new google.maps.Map(document.getElementById('mapShow'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
       }
-    });
-  });
-</script>
-  <div id="mapShow"></div>
+    </script>
   <table>
     <tr>
       <td id="form">
@@ -134,48 +115,6 @@
         </td>
         </tr>
         </table>
-
-  <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('mapShow'), {
-          zoom: 7,
-          center: new google.maps.LatLng( 47.361893,-100.465128),
-          mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            mapTypeIds: ['hybrid', 'roadmap', 'terrain']
-          }
-          
-        });
-
-
-        var marker = new google.maps.Marker({
-          position: {lat: 48.52467, lng: -102.85350},
-          map: map
-        });
-      }
-
-    //   $.getJSON('/json/show', createMarker);
-
-    //   function createMarker(data) {
-    //     data.foreach(function(spill) {
-    //       var marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng(spill.latitude, spill.longitude),
-    //         map: map
-    //       });
-    //     });
-    //   };
-    // }
-
-
-    //     $.getJSON('/json/show', createMarkers);
-
-    //     var ctaLayer = new google.maps.KmlLayer({
-    //   url: 'https://sites.google.com/site/jskordkmlfiles/kml_files/Bakken.kml?revision=2',
-    //   preserveViewport: true,
-    //   map: map
-    // });
-  </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhiLyzchIrDbps7sdNjA3BpO72DC2Efyo&callback=initMap"
     async defer></script>

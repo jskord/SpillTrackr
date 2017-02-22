@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/index' => 'spills#index'
   get '/bakken_counties' => 'spills#bakken_counties'
   get '/spills/:id' => 'spills#show'
+  get '/show2' => 'spills#show_map'
+
 
   post '/post' => 'posts#create'
   delete '/post/:id' => 'posts#destroy'

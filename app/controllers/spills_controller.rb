@@ -15,5 +15,6 @@ class SpillsController < ApplicationController
     end
     render 'show.html.erb'
   end
+    
 
 end
