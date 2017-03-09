@@ -3,13 +3,12 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
       #mapShow {
         height: 60%;
+        width:90%;
+        margin: 0 auto;
         outline: solid black;
       }
-      /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
@@ -17,8 +16,6 @@
       }
     </style>
   </head>
-
-
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
@@ -42,11 +39,19 @@
         </div>
       </div>
     </div>
-  <%= form_tag '/json/show', method: :get do %>
-  <%= hidden_field_tag :spill_id, @spill.id %>
-  <%= submit_tag "Show Location" %>
-  <% end %>
-  <div id="mapShow"></div>
+    <%= form_tag '/json/show', method: :get do  %>
+        <%= hidden_field_tag :spill_id, @spill.id %>
+        <%= submit_tag "Show Location", id: 'submit-button' %>
+    <% end %>
+    <div id="mapShow"></div>
+    <script>
+      function initMap() {
+        mapShow = new google.maps.Map(document.getElementById('mapShow'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
   <table>
     <tr>
       <td id="form">
@@ -110,48 +115,6 @@
         </td>
         </tr>
         </table>
-
-  <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('mapShow'), {
-          zoom: 7,
-          center: new google.maps.LatLng( 47.361893,-100.465128),
-          mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            mapTypeIds: ['hybrid', 'roadmap', 'terrain']
-          }
-          
-        });
-
-
-        var marker = new google.maps.Marker({
-          position: {lat: 48.52467, lng: -102.85350},
-          map: map
-        });
-      }
-
-    //   $.getJSON('/json/show', createMarker);
-
-    //   function createMarker(data) {
-    //     data.foreach(function(spill) {
-    //       var marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng(spill.latitude, spill.longitude),
-    //         map: map
-    //       });
-    //     });
-    //   };
-    // }
-
-
-    //     $.getJSON('/json/show', createMarkers);
-
-    //     var ctaLayer = new google.maps.KmlLayer({
-    //   url: 'https://sites.google.com/site/jskordkmlfiles/kml_files/Bakken.kml?revision=2',
-    //   preserveViewport: true,
-    //   map: map
-    // });
-  </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhiLyzchIrDbps7sdNjA3BpO72DC2Efyo&callback=initMap"
     async defer></script>

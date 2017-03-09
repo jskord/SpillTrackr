@@ -41,18 +41,6 @@ class MapsController < ApplicationController
     
     render json: spills_since_2000_bakken_counties.to_json
 
-
-    # @spills_bakken_counties = Spill.where(County: "McKenzie")
-    # .or(Spill.where(County: "Divide")
-    #   .or(Spill.where(County: "Burke")
-    #     .or(Spill.where(County: "Williams")
-    #       .or(Spill.where(County: "Dunn")
-    #         .or(Spill.where(County: "Billings")
-    #           .or(Spill.where(County: "Golden Valley")
-    #             .or(Spill.where(County: "Mountrail")
-    #               .or(Spill.where(County: "Stark")
-
-
   end
 
 
@@ -100,20 +88,10 @@ class MapsController < ApplicationController
   end_date = DateTime.new(params[:end_year].to_i, params[:end_month].to_i)
   selected_spills = spills_since_2000_bakken_counties.select { |spill| spill.date_incident >= start_date && spill.date_incident <= end_date }
   render json: selected_spills.to_json
-
-    # start_year = spills_since_2000_bakken_counties.select { |spill| spill.date_incident.year >= params[:start_year].to_i }
-
-    # start_year_month = start_year.select { |spill| spill.date_incident.month >= params[:start_month].to_i }
-
-    # end_year = start_year_month.select { |spill| spill.date_incident.year <= params[:end_year].to_i }
-
-    # year_month_range = end_year.select { |spill| spill.date_incident.month <= params[:end_month].to_i }
-
-    # render json: year_month_range.to_json
   end
 
   def json_show
-    spill_id = params[:id]
+    spill_id = params[:spill_id]
     @spill = Spill.find_by(id: spill_id)
     render json: @spill.to_json
   end
